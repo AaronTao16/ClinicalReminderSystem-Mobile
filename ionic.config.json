@@ -1,0 +1,7 @@
+{
+  "name": "ClinicalReminder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
