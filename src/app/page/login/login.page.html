@@ -1,0 +1,54 @@
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="theme-bg"></div>
+  <div class="auth-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      <h4 no-margin>
+        <ion-text color="light" class="fw700">
+          Clinical Reminder System
+        </ion-text>
+      </h4>
+    </div><br><br>
+
+    <!-- Login form -->
+    <form [formGroup]="onLoginForm" class="list-form">
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="person" item-start></ion-icon>
+          Username
+        </ion-label>
+        <ion-input color="dark" formControlName="username"></ion-input>
+      </ion-item>
+      <p ion-text class="text08" *ngIf="onLoginForm.get('username').touched && onLoginForm.get('username').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+
+      <ion-item class="animated fadeInUp">
+        <ion-label position="floating">
+          <ion-icon name="lock-closed" item-start></ion-icon>
+          Password
+        </ion-label>
+        <ion-input color="secondary" type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <p ion-text color="warning" class="text08" *ngIf="onLoginForm.get('password').touched && onLoginForm.get('password').hasError('required')">
+        <ion-text color="warning">
+          Required Field
+        </ion-text>
+      </p>
+    </form><br><br>
+
+
+    <div>
+      <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="login()" [disabled]="!onLoginForm.valid" tappable>
+        <ion-icon name="log-in"></ion-icon>
+        Login
+      </ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

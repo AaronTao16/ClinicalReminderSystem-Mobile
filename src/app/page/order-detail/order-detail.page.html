@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    <ion-buttons slot="start" >
+      <ion-menu-button color="blue" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>{{order.ordTitle}} Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="primary" margin shape="round" expand="full" style="background-color: cornflowerblue">
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="order.pro==1" style="color: #eb445a"><strong>High</strong></ion-card-subtitle>
+      <ion-card-subtitle *ngIf="order.pro==2" style="color: yellow">Middle</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="order.pro==3" style="color: green">Low</ion-card-subtitle>
+      <ion-card-title *ngIf="order.status==1">{{order.ordTitle}}  <span>(UNFINISHED)</span></ion-card-title>
+      <ion-card-title *ngIf="order.status==3">{{order.ordTitle}}  <span>(DONE)</span></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Start Time: {{order.sTime | date:'MM/dd/yyyy hh:mm:ss'}}</p>
+      <p>Due Time: {{order.eTime | date:'MM/dd/yyyy hh:mm:ss'}}</p>
+      <p>Duration: {{order.duration | date:'hh:mm:ss'}}</p>
+      <p>Instruction: {{order.des}}</p>
+    </ion-card-content>
+  </ion-card>
+  <button class="btn" type="submit" [disabled]="order.status==3" (click)="orderDone(order.ordId, order.pro)">Mark as Done</button>
+</ion-content>

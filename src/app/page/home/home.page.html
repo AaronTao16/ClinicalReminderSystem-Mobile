@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="blue">
+    <ion-buttons slot="start" >
+      <ion-menu-button color="blue" menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="black" class="fw700">Home</ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <ion-card no-margin class="no-radius">
+    <ion-item lines="none" color="medium">
+      <ion-label>
+        <h2 no-margin class="fw500 no-margin">
+          <ion-text color="dark">Alert</ion-text>
+        </h2>
+
+        <p class="text-11x no-margin">
+          <ion-text  color="primary"></ion-text>
+        </p>
+      </ion-label>
+      <ion-button shape="round" fill="outline" size="small" color="primary">
+        Notification
+        <ion-icon name="notifications"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="primary" margin shape="round" expand="full" style="background-color: cornflowerblue" *ngFor="let order of orders" [disabled]="order.status==2" (click)="orderDetail(order)">
+    <ion-card-header>
+      <ion-card-subtitle *ngIf="order.pro==1" style="color: #eb445a"><strong>High</strong></ion-card-subtitle>
+      <ion-card-subtitle *ngIf="order.pro==2" style="color: yellow">Middle</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="order.pro==3" style="color: green">Low</ion-card-subtitle>
+      <ion-card-title *ngIf="order.status==1">{{order.ordTitle}}  <span>(UNFINISHED)</span></ion-card-title>
+      <ion-card-title *ngIf="order.status==2">{{order.ordTitle}}  <span>(DELAY)</span></ion-card-title>
+      <ion-card-title *ngIf="order.status==3">{{order.ordTitle}}  <span>(DONE)</span></ion-card-title>
+      <ion-card-subtitle>{{order.sTime | date:'MM/dd/yyyy hh:mm'}} -- {{order.eTime | date:'MM/dd/yyyy hh:mm'}}</ion-card-subtitle>
+      <ion-card-subtitle style="color: slategrey">Duration: {{order.duration | date:'hh:mm'}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{order.des}}
+    </ion-card-content>
+  </ion-card>
+
+  <menu></menu>
+</ion-content>
